@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const HomeScreen = ({ navigation }) => {
   const [sidebarVisible, setSidebarVisible] = useState(false);
@@ -12,31 +13,33 @@ const HomeScreen = ({ navigation }) => {
     <View style={styles.container}>
       {sidebarVisible && (
         <View style={styles.sideBar}>
-          <View style={styles.sideBarBtn}>
-            <Button title="Home" onPress={() => alert('Download 1 Pressed')} />
-          </View>
-          <View style={styles.sideBarBtn}>
-            <Button title="Create Order" onPress={() => alert('Download 2 Pressed')} />
-          </View>
-          <View style={styles.sideBarBtn}>
-            <Button title="Orders" onPress={() => alert('Download 2 Pressed')} />
-          </View>
-          <View style={styles.sideBarBtn}>
-            <Button title="Invoices" onPress={() => alert('Download 2 Pressed')} />
-          </View>
-          <View style={styles.sideBarBtn}>
-            <Button title="Reports" onPress={() => alert('Download 2 Pressed')} />
-          </View>
-          <View style={styles.sideBarBtn}>
-            <Button title="Settings" onPress={() => alert('Download 2 Pressed')} />
-          </View>
+          <TouchableOpacity style={styles.sideBarBtn} onPress={() => alert('Home Pressed')}>
+            <Text style={styles.sideBarBtnText}>Home</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.sideBarBtn} onPress={() => alert('Create Order Pressed')}>
+            <Text style={styles.sideBarBtnText}>Create Order</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.sideBarBtn} onPress={() => alert('Orders Pressed')}>
+            <Text style={styles.sideBarBtnText}>Orders</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.sideBarBtn} onPress={() => alert('Invoices Pressed')}>
+            <Text style={styles.sideBarBtnText}>Invoices</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.sideBarBtn} onPress={() => alert('Reports Pressed')}>
+            <Text style={styles.sideBarBtnText}>Reports</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.sideBarBtn} onPress={() => alert('Settings Pressed')}>
+            <Text style={styles.sideBarBtnText}>Settings</Text>
+          </TouchableOpacity>
         </View>
       )}
       <View style={styles.heading}>
         <Text style={styles.text}>Prabha Tech</Text>
       </View>
       <View style={styles.menuButton}>
-        <Button title="Menu" onPress={toggleSidebar} />
+        <TouchableOpacity onPress={toggleSidebar}>
+          <Icon name="bars" size={30} color="#000" />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -47,9 +50,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     width: '100%',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
     backgroundColor: '#e0e0e0',
+    alignItems:'start',
   },
   sideBar: {
     width: 150,
@@ -62,9 +64,13 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   sideBarBtn: {
-    marginVertical: 20,
-    zIndex: 2,
-    backgroundColor:'transparent',
+    marginVertical: 10,
+    padding: 10,
+    backgroundColor: 'transparent',
+  },
+  sideBarBtnText: {
+    color: '#fff',
+    fontSize: 16,
   },
   heading: {
     flex: 1,
@@ -83,13 +89,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 20,
     right: 10,
-    backgroundColor: '#fff',
     zIndex: 1,
-  },
-  navigationButtons: {
-    marginVertical: 20,
-    width: '100%',
-    alignItems: 'center',
   },
 });
 
