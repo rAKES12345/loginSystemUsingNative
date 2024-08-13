@@ -13,16 +13,22 @@ const HomeScreen = ({ navigation }) => {
       {sidebarVisible && (
         <View style={styles.sideBar}>
           <View style={styles.sideBarBtn}>
-            <Button title="Download Report" onPress={() => alert('Download 1 Pressed')} />
+            <Button title="Home" onPress={() => alert('Download 1 Pressed')} />
           </View>
           <View style={styles.sideBarBtn}>
-            <Button title="Failed Test Report" onPress={() => alert('Download 2 Pressed')} />
+            <Button title="Create Order" onPress={() => alert('Download 2 Pressed')} />
           </View>
-          <View>
-            <Button title="Sign Up" onPress={() => navigation.navigate('SignUp')} />
+          <View style={styles.sideBarBtn}>
+            <Button title="Orders" onPress={() => alert('Download 2 Pressed')} />
           </View>
-          <View style={styles.navigationButtons}>
-            <Button title="Login" onPress={() => navigation.navigate('Login')} />
+          <View style={styles.sideBarBtn}>
+            <Button title="Invoices" onPress={() => alert('Download 2 Pressed')} />
+          </View>
+          <View style={styles.sideBarBtn}>
+            <Button title="Reports" onPress={() => alert('Download 2 Pressed')} />
+          </View>
+          <View style={styles.sideBarBtn}>
+            <Button title="Settings" onPress={() => alert('Download 2 Pressed')} />
           </View>
         </View>
       )}
@@ -48,7 +54,7 @@ const styles = StyleSheet.create({
   sideBar: {
     width: 150,
     padding: 10,
-    backgroundColor: '#f4f4f4',
+    backgroundColor: '#2f3f59',
     position: 'absolute',
     left: 0,
     top: 0,
@@ -58,6 +64,7 @@ const styles = StyleSheet.create({
   sideBarBtn: {
     marginVertical: 20,
     zIndex: 2,
+    backgroundColor:'transparent',
   },
   heading: {
     flex: 1,
@@ -74,7 +81,7 @@ const styles = StyleSheet.create({
   },
   menuButton: {
     position: 'absolute',
-    top: 10,
+    top: 20,
     right: 10,
     backgroundColor: '#fff',
     zIndex: 1,
