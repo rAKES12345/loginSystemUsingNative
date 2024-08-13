@@ -27,7 +27,7 @@ const HomeScreen = ({ navigation }) => {
         </View>
       )}
       <View style={styles.heading}>
-        <Text style={styles.text}>QBench</Text>
+        <Text style={styles.text}>Prabha Tech</Text>
       </View>
       <View style={styles.menuButton}>
         <Button title="Menu" onPress={toggleSidebar} />
