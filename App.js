@@ -1,168 +1,67 @@
-import React, { useState } from 'react';
-import { View, Text, Pressable, StyleSheet, Image } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import React from 'react';
+import {View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Login from './screens/Login';
+import SignUp from './screens/SignUp';
+import Home from './screens/Home'; 
+import CreateOrder from './screens/CreateOrder';
+import Sidebar from './screens/SideBar'; // Ensure correct import path
+import Header from './screens/Header'; // Ensure correct import path
+import Orders from './screens/Orders'; // Ensure correct import path
 
-const HomeScreen = ({ navigation }) => {
-  const [sidebarVisible, setSidebarVisible] = useState(false);
-  const [pressedButton, setPressedButton] = useState(null);
+const Stack = createStackNavigator();
+
+const HomeWithSidebar = ({ navigation }) => {
+  const [sidebarVisible, setSidebarVisible] = React.useState(false);
 
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
   };
 
-  const handlePressIn = (buttonName) => {
-    setPressedButton(buttonName);
-  };
-
-  const handlePressOut = () => {
-    setPressedButton(null);
-  };
-
   return (
-    <View style={styles.container}>
-      {sidebarVisible && (
-        <View style={styles.sideBar}>
-          <Pressable
-            style={[
-              styles.sideBarBtn,
-              pressedButton === 'Home' && styles.sideBarBtnPressed
-            ]}
-            onPressIn={() => handlePressIn('Home')}
-            onPressOut={handlePressOut}
-            onPress={() => setSidebarVisible(!sidebarVisible)}
-          >
-            <Text style={styles.sideBarBtnText}>Home</Text>
-          </Pressable>
-          <Pressable
-            style={[
-              styles.sideBarBtn,
-              pressedButton === 'Create Order' && styles.sideBarBtnPressed
-            ]}
-            onPressIn={() => handlePressIn('Create Order')}
-            onPressOut={handlePressOut}
-            onPress={() => setSidebarVisible(!sidebarVisible)}
-          >
-            <Text style={styles.sideBarBtnText}>Create Order</Text>
-          </Pressable>
-          <Pressable
-            style={[
-              styles.sideBarBtn,
-              pressedButton === 'Orders' && styles.sideBarBtnPressed
-            ]}
-            onPressIn={() => handlePressIn('Orders')}
-            onPressOut={handlePressOut}
-            onPress={() => setSidebarVisible(!sidebarVisible)}
-          >
-            <Text style={styles.sideBarBtnText}>Orders</Text>
-          </Pressable>
-          <Pressable
-            style={[
-              styles.sideBarBtn,
-              pressedButton === 'Invoices' && styles.sideBarBtnPressed
-            ]}
-            onPressIn={() => handlePressIn('Invoices')}
-            onPressOut={handlePressOut}
-            onPress={() => setSidebarVisible(!sidebarVisible)}
-          >
-            <Text style={styles.sideBarBtnText}>Invoices</Text>
-          </Pressable>
-          <Pressable
-            style={[
-              styles.sideBarBtn,
-              pressedButton === 'Reports' && styles.sideBarBtnPressed
-            ]}
-            onPressIn={() => handlePressIn('Reports')}
-            onPressOut={handlePressOut}
-            onPress={() => setSidebarVisible(!sidebarVisible)}
-          >
-            <Text style={styles.sideBarBtnText}>Reports</Text>
-          </Pressable>
-          <Pressable
-            style={[
-              styles.sideBarBtn,
-              pressedButton === 'Settings' && styles.sideBarBtnPressed
-            ]}
-            onPressIn={() => handlePressIn('Settings')}
-            onPressOut={handlePressOut}
-            onPress={() => setSidebarVisible(!sidebarVisible)}
-          >
-            <Text style={styles.sideBarBtnText}>Settings</Text>
-          </Pressable>
-        </View>
-      )}
-      <View style={styles.heading}>
-        <Text style={styles.text}>Prabha Tech</Text>
-        <Image source={require('./assets/logo.jpg')} style={styles.image} />
-      </View>
-      <View style={styles.menuButton}>
-        <Pressable onPress={toggleSidebar}>
-          <Icon name="bars" size={30} color="#000" />
-        </Pressable>
-      </View>
+    <View style={{ flex: 1 }}>
+      <Header toggleSidebar={toggleSidebar} />
+      <Sidebar 
+        navigation={navigation} 
+        sidebarVisible={sidebarVisible} 
+        toggleSidebar={toggleSidebar} 
+      />
+      <Home />
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'row',
-    width: '100%',
-    backgroundColor: '#e0e0e0',
-    alignItems: 'flex-start',
-  },
-  sideBar: {
-    width: 150,
-    padding: 10,
-    paddingVertical: 30,
-    backgroundColor: '#2f3f59',
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    bottom: 0,
-    zIndex: 2,
-  },
-  sideBarBtn: {
-    marginVertical: 10,
-    padding: 10,
-    backgroundColor: 'transparent',
-  },
-  sideBarBtnText: {
-    color: '#fff',
-    fontSize: 16,
-  },
-  sideBarBtnPressed: {
-    backgroundColor: '#1a2b41',
-    borderRadius: 5,
-  },
-  heading: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ffffff',
-    paddingVertical: 20,
-    width: '100%',
-    zIndex: 1,
-  },
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginLeft: 10,
-  },
-  menuButton: {
-    position: 'absolute',
-    top: 30,
-    left: 10,
-    zIndex: 1,
-  },
-  image: {
-    width: 50,
-    height: 50,
-    marginTop:3,
-    marginHorizontal:8,
-    opacity: 0.5, // Make the image transparent
-  },
-});
-
-export default HomeScreen;
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
+        <Stack.Screen 
+          name="SignUp" 
+          component={SignUp} 
+          options={{ title: 'SignUp' }}
+        />
+        <Stack.Screen 
+          name="Login" 
+          component={Login} 
+          options={{ title: 'Login' }}
+        />
+        <Stack.Screen 
+          name="Home" 
+          component={HomeWithSidebar} 
+          options={{ title: 'Home' }}
+        />
+        <Stack.Screen 
+          name="CreateOrder" 
+          component={CreateOrder} 
+          options={{ title: 'CreateOrder' }}
+        />
+        <Stack.Screen 
+          name="Orders" 
+          component={Orders} 
+          options={{ title: 'Orders' }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}

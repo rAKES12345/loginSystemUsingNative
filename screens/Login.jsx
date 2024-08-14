@@ -21,17 +21,18 @@ const Login = ({ navigation }) => {
         const validationErrors = validate();
         if (Object.keys(validationErrors).length === 0) {
             console.log(loginData);
-            navigation.navigate('Home');
+            navigation.navigate('Home'); // Ensure this matches exactly with App.js
             Alert.alert("Success", "Login successful!", [
                 { text: "OK", onPress: () => {
                     console.log("Navigating to Home");
-                    navigation.navigate('Home');
+                    navigation.navigate('Home'); // Ensure this matches exactly with App.js
                 }}
             ]);
         } else {
             setErrors(validationErrors);
         }
     };
+    
 
     return (
         <View style={styles.container}>
