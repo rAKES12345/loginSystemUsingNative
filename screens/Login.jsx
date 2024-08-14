@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Pressable, Alert } from 'react-native';
+import React, { useState,useEffect } from 'react';
+import { View, Text, TextInput, StyleSheet, Pressable, Alert, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
 const Login = ({ navigation }) => {
@@ -20,26 +20,23 @@ const Login = ({ navigation }) => {
     const handleLogin = () => {
         const validationErrors = validate();
         if (Object.keys(validationErrors).length === 0) {
-            console.log(loginData);
-            navigation.navigate('Home'); // Ensure this matches exactly with App.js
-            Alert.alert("Success", "Login successful!", [
-                { text: "OK", onPress: () => {
-                    console.log("Navigating to Home");
-                    navigation.navigate('Home'); // Ensure this matches exactly with App.js
-                }}
-            ]);
+            console.log('Login data:', loginData); 
+            navigation.navigate('Home'); 
         } else {
             setErrors(validationErrors);
+            console.log('Validation errors:', validationErrors); 
         }
     };
-    
 
     return (
         <View style={styles.container}>
             <StatusBar style="dark" />
             <Text style={styles.title}>Login System</Text>
+            <View style={styles.logoContainer}>
+                <Image source={require('../assets/logo.jpg')} style={styles.logo} />
+            </View>
             <Text style={styles.subtitle}>Account Login</Text>
-            
+
             <TextInput
                 style={[styles.input, errors.userName && styles.errorInput]}
                 placeholder="Enter Username"
@@ -75,16 +72,17 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         padding: 20,
-        backgroundColor: '#f9f9f9',
+        backgroundColor: '#f0f4f8',
     },
     title: {
-        fontSize: 24,
+        fontSize: 28,
         fontWeight: 'bold',
         marginBottom: 10,
+        color: '#333',
     },
     subtitle: {
-        fontSize: 18,
-        color: '#888',
+        fontSize: 20,
+        color: '#666',
         marginBottom: 20,
     },
     input: {
@@ -93,25 +91,25 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         marginBottom: 15,
         paddingHorizontal: 15,
-        borderRadius: 10,
+        borderRadius: 8,
         backgroundColor: '#fff',
         fontSize: 16,
         width: '100%',
     },
     errorInput: {
-        borderColor: '#d9534f',
+        borderColor: '#e74c3c',
     },
     errorText: {
-        color: '#d9534f',
+        color: '#e74c3c',
         marginBottom: 10,
         fontSize: 14,
         textAlign: 'left',
         width: '100%',
     },
     button: {
-        backgroundColor: '#007bff',
+        backgroundColor: '#3498db',
         paddingVertical: 15,
-        borderRadius: 10,
+        borderRadius: 8,
         alignItems: 'center',
         marginVertical: 10,
         width: '100%',
@@ -126,9 +124,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     signUpText: {
-        color: '#007bff',
+        color: '#3498db',
         fontSize: 16,
         fontWeight: 'bold',
+    },
+    logoContainer: {
+        marginBottom: 20,
+    },
+    logo: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        borderWidth: 2,
+        borderColor: '#3498db',
     },
 });
 

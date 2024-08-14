@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet,Text } from 'react-native';
-import Sidebar from '../screens/SideBar'; // Ensure the correct path
-import Header from '../screens/Header';   // Ensure the correct path
+import Sidebar from '../screens/SideBar'; 
+import Header from '../screens/Header';  
 
 const Home = ({ navigation }) => {
   const [sidebarVisible, setSidebarVisible] = useState(false);

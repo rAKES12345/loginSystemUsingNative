@@ -22,7 +22,7 @@ const Sidebar = ({ navigation, sidebarVisible, toggleSidebar }) => {
             style={styles.closeBtn}
             onPress={toggleSidebar}
           >
-            <Icon name="times" size={30} color="#fff" />
+            <Icon name="times" size={20} color="#fff" />
           </Pressable>
           <Pressable
             style={[

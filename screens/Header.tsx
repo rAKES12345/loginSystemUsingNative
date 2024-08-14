@@ -9,7 +9,7 @@ const Header = ({ toggleSidebar }) => {
       <Pressable
         style={styles.menuButton}
         onPress={toggleSidebar}
-        accessibilityLabel="Open Sidebar"
+        aria-label="Open Sidebar"
         accessibilityHint="Opens the sidebar menu"
       >
         <Icon name="bars" size={30} color="blue" />
@@ -22,7 +22,7 @@ const Header = ({ toggleSidebar }) => {
 
 const styles = StyleSheet.create({
   heading: {
-    height: 50,  // Set the height to 50px
+    height: 70,  // Set the height to 50px
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',  // Center items vertically
@@ -40,12 +40,12 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     marginHorizontal: 8,
-    opacity: 0.5, // Make the image transparent
+    opacity: 0.5, 
   },
   menuButton: {
     position: 'absolute',
     left: 10,
-    top: 10,  // Adjust as necessary to vertically center
+    top: 20,  // Adjust as necessary to vertically center
     zIndex: 1,
   },
 });
